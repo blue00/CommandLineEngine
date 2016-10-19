@@ -1,20 +1,20 @@
-//@TODO: add namespace Math, remove the class
-
 #pragma once
-class Mathf
-{
-public:
-};
 
-struct Point
-{
-	int x;
-	int y;
-};
+#include <vector>
 
-struct PointF
+namespace Mathf
 {
-	float x;
-	float y;
-};
+	struct Point
+	{
+		int x;
+		int y;
+	};
 
+	struct PointF
+	{
+		float x;
+		float y;
+	};
+
+	std::vector<Point> Raytrace(int x0, int y0, int x1, int y1);
+}

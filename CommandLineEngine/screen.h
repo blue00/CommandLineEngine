@@ -2,8 +2,6 @@
 
 #include <Windows.h>
 #include <string>
-#include <vector>
-#include "mathf.h"
 
 class Screen
 {
@@ -20,7 +18,6 @@ public:
 	void SetTitle(std::wstring text);
 	inline bool CheckBounds(int x, int y);
 	bool CheckBounds(float x, float y);
-	std::vector<Point> Raytrace(int x0, int y0, int x1, int y1);
 private:
 	char map[screenY][screenX];
 	void ForceDraw();

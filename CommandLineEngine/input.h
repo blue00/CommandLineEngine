@@ -20,7 +20,7 @@ public:
 	bool IsKeyDown(int func); //true wenn gepresst
 	bool IsKeyReleased(int func); //true wenn released
 	void ResetKeys();
-	PointF MousePos(Screen screen);
+	Mathf::PointF MousePos(Screen screen);
 
 private:
 	/* KEY STATES - DO NOT CHANGE THIS IF YOU ADD A NEW KEY !!! */

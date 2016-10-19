@@ -79,7 +79,7 @@ void Ball::Update()
 
 	float posXNew = posX + velX * speed * engine->deltaTime;
 	float posYNew = posY + velY * speed * engine->deltaTime;
-	std::vector<Point> visitedPoints = engine->screen.Raytrace(posX, posY, posXNew, posYNew);
+	std::vector<Mathf::Point> visitedPoints = Mathf::Raytrace(posX, posY, posXNew, posYNew);
 	//@TODO: use it now!
 
 	float hitAngle;
