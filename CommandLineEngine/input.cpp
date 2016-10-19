@@ -86,13 +86,13 @@ void Input::ResetKeys()
 	}
 }
 
-PointF Input::MousePos(Screen screen)
+Mathf::PointF Input::MousePos(Screen screen)
 {
 	POINT p;
 	GetCursorPos(&p);
 	ScreenToClient(screen.consoleWindow, &p);
 
-	PointF point;
+	Mathf::PointF point;
 
 	//werte durch rummprobieren herausgefunden
 	point.x = p.x / (screen.screenX / 12.0);
