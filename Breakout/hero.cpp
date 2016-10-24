@@ -52,3 +52,8 @@ void Hero::Update()
 	//draw held
 	engine->screen.SetString(x, y, held);
 }
+
+const std::wstring Hero::ToString()
+{
+	return std::wstring(L"Hero");
+}

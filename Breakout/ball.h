@@ -9,7 +9,6 @@ class Hero;
 class Ball : public GameObject
 {
 public:
-	std::string  look;
 	float posX;
 	float posY;
 	float velX;
@@ -18,9 +17,11 @@ public:
 
 	virtual void Update();
 	virtual void Start();
+	virtual const std::wstring ToString();
 
 	Hero* hero;
 private:
+	std::string look;
 	struct trail
 	{
 		int x = 0;

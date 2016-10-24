@@ -13,6 +13,7 @@ public:
 	virtual void Update();
 	virtual void OnDestroy();
 	virtual void Start();
+	virtual const std::wstring ToString();
 
 	bool CheckHit(float x, float y, float& angle);
 };

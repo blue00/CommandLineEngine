@@ -135,3 +135,8 @@ void Ball::Update()
 
 	DrawTrail();
 }
+
+const std::wstring Ball::ToString()
+{
+	return std::wstring(L"Ball");
+}

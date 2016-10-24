@@ -6,7 +6,7 @@
 #include <iostream>
 
 //abstract game class
-Engine::Engine()
+Engine::Engine():gameObjectManager(1 << 16)
 {
 	gameData.engine = this;
 

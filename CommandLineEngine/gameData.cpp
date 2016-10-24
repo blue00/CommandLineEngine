@@ -10,8 +10,7 @@ GameData::GameData()
 
 void GameData::Create(GameObject *gameObject)
 {
-	gameObject->engine = engine;
-	gameObject->Start();
+	gameObject->Initialize(engine);
 	AddAlive(gameObject);
 	AddUpdate(gameObject);
 }
