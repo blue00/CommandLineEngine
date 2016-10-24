@@ -14,7 +14,8 @@ public:
 	Engine* engine;
 	virtual void Update();
 	virtual void Start();
-	virtual void OnDestroy();
+	virtual void OnDestroy(); //@TODO: add private ondestroy function wich is called after OnDestroy to clean up the memory
+    void Destroy();
 private:
 
 };

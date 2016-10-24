@@ -27,3 +27,8 @@ void GameObject::OnDestroy()
 {
 	//
 }
+
+void GameObject::Destroy()
+{
+	//@TODO: inform the gameData that this object should be destroyed
+}

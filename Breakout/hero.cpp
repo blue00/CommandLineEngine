@@ -34,10 +34,10 @@ void Hero::OnDestroy()
 
 void Hero::Update()
 {
-	float length = held.length();
+	float length = static_cast<float>(held.length());
 
 	//calculate x coordinate of hero
-	x = engine->input.MousePos(engine->screen).x - length / 2.0;
+	x = engine->input.MousePos(engine->screen).x - length / 2.0f;
 
 	//bounds checking for x coordinate
 	if (x < 0)
