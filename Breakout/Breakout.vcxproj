@@ -86,6 +86,8 @@
     <ClInclude Include="breakout.h" />
     <ClInclude Include="hero.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="snowflake.h" />
+    <ClInclude Include="snowflakeManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
@@ -93,6 +95,8 @@
     <ClCompile Include="hero.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="snowflake.cpp" />
+    <ClCompile Include="snowflakeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommandLineEngine\CommandLineEngine.vcxproj">

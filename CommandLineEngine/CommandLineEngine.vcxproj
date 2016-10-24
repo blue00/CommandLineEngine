@@ -15,6 +15,8 @@
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="gameData.cpp" />
+    <ClCompile Include="gameObjectHandle.cpp" />
+    <ClCompile Include="gameObjectManager.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="mathf.cpp" />
     <ClCompile Include="screen.cpp" />
@@ -24,6 +26,9 @@
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="gameData.h" />
+    <ClInclude Include="gameObjectManager.h" />
+    <ClInclude Include="gameObjectHandle.h" />
+    <ClInclude Include="gameObjectToken.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="mathf.h" />
     <ClInclude Include="screen.h" />

@@ -4,6 +4,7 @@
 
 #include "ball.h"
 #include "hero.h"
+#include "snowflakeManager.h"
 
 class Breakout : public Engine
 {
@@ -12,4 +13,5 @@ public:
 private:
 	Hero hero;
 	Ball ball;
+	SnowflakeManager snowflakeManager;
 };
