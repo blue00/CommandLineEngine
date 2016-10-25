@@ -16,7 +16,8 @@ Engine::Engine():gameObjectManager(1 << 16)
 
 void Engine::Run()
 {
-	clock_t startT, endT;
+	clock_t startT;
+	float endT;
 
 	while (true)
 	{
@@ -27,13 +28,13 @@ void Engine::Run()
 		gameData.Tick();
 		screen.Draw(); //zeichnen (dadurch wird nicht immer zur gleichen zeit gezeichnet!)
 
-		endT = clock() - startT; //dauer des ticks berrechnen
+		endT = static_cast<float>(clock() - startT); //dauer des ticks berrechnen
 
 		if (isFixedTimeOn) //soll jeder tick mindestens fixedTimeRate lange dauern?
 		{
 			if (endT < fixedTimeRate) //war der tick zu schnell? falls ja warten
 			{
-				Sleep(fixedTimeRate - endT);
+				Sleep(int(fixedTimeRate - endT));
 				deltaTime = fixedTimeRate;
 				//system("Color 2B");
 			}

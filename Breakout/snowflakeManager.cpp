@@ -25,7 +25,7 @@ void SnowflakeManager::Update()
 			nextX = 30;
 		}
 
-		engine->gameData.Create(snowflake);
+		engine->gameData.Spawn(snowflake);
 		handle.SetObj(snowflake);
 	}
 }

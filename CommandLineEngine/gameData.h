@@ -15,7 +15,7 @@ public:
 	void AddAlive(GameObject *gameObject);
 	void AddUpdate(GameObject *gameObject);
 	void RemoveUpdate(GameObject *gameObject);
-	void Create(GameObject *gameObject);
+	void Spawn(GameObject *gameObject);
 	std::vector<GameObject*> updateVec; //vector of pointers to gameObjects
 	std::vector<GameObject*> aliveVec;
 };

@@ -25,35 +25,6 @@ bool GameObjectManager::HasFreeSlots()
 	return nextFreeSlot != SLOTS_ALL_FULL;
 }
 
-// Register a GameObject so it can use the token system
-void GameObjectManager::Register(GameObject* obj)
-{
-	OutputDebugStringW(L"Registering ");
-	OutputDebugStringW((obj->ToString()).c_str());
-
-	if (!HasFreeSlots())
-	{
-		// BAD BAD BAD
-		MessageBox(NULL, L"No more entity slots, this will be fatal!", NULL, NULL);
-	}
-	else
-	{
-		// found a free slot
-		lastGivenId = nextFreeSlot;
-		entitySlots[nextFreeSlot] = obj;
-		GameObjectToken token(nextFreeSlot, lastGivenAbsoluteId++);
-		obj->Token = token;
-
-		OutputDebugStringW(L"SlotIndex: ");
-		OutputDebugStringW(std::to_wstring(token.slotId).c_str());
-		OutputDebugStringW(L" | AbsID: ");
-		OutputDebugStringW(std::to_wstring(token.absoluteId).c_str());
-
-		nextFreeSlot = SLOTS_UNKNOWN;
-	}
-	OutputDebugStringW(L"\n");
-}
-
 // Get a free slot id or SLOTS_ALL_FULL if none was found
 int GameObjectManager::getFreeSlot()
 {
@@ -70,6 +41,39 @@ int GameObjectManager::getFreeSlot()
 	return SLOTS_ALL_FULL;
 }
 
+// Register a GameObject so it can use the token system
+void GameObjectManager::Register(GameObject* obj)
+{
+	OutputDebugStringW(L"Registering ");
+	OutputDebugStringW((obj->ToString()).c_str());
+	OutputDebugStringW(L"... ");
+
+	if (!HasFreeSlots())
+	{
+		OutputDebugStringW(L"failed\n");
+		// BAD BAD BAD
+		MessageBox(NULL, L"No more entity slots, this will be fatal!", NULL, NULL);
+		// i wanna throw an exception but i don't know how to do that properly in c++. i'm dumb
+	}
+	else
+	{
+		// found a free slot
+		lastGivenId = nextFreeSlot;
+		entitySlots[nextFreeSlot] = obj;
+
+		GameObjectToken token(nextFreeSlot, lastGivenAbsoluteId++);
+		obj->Token = token;
+
+		OutputDebugStringW(L"SlotIndex: ");
+		OutputDebugStringW(std::to_wstring(token.slotId).c_str());
+		OutputDebugStringW(L" | AbsID: ");
+		OutputDebugStringW(std::to_wstring(token.absoluteId).c_str());
+		OutputDebugStringW(L"\n");
+
+		nextFreeSlot = SLOTS_UNKNOWN;
+	}
+}
+
 // Unregister a GameObject. Its tokens will return NULL from now on.
 void GameObjectManager::Unregister(GameObject* obj)
 {
@@ -83,6 +87,7 @@ void GameObjectManager::Unregister(GameObject* obj)
 	{
 		// BAD BAD BAD
 		MessageBox(NULL, L"Attempted to unregister an object which is not registered!", NULL, NULL);
+		// i wanna throw an exception but i don't know how to do that properly in c++. i'm dumb
 	}
 	else
 	{
@@ -99,7 +104,7 @@ void GameObjectManager::Unregister(GameObject* obj)
 // Get a GameObject based on the given token. (or NULL if it doesn't exist)
 GameObject* GameObjectManager::Get(GameObjectToken token)
 {
-	// check range
+	// check range (is "out of range" an error?)
 	if (token.slotId < 0 || token.slotId >= numSlots)
 	{
 		// i wanna throw an exception but i don't know how to do that properly in c++. i'm dumb

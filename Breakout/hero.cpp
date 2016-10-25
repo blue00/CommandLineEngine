@@ -11,7 +11,7 @@ void Hero::Start()
 //true falls der held getroffen wird. angle gibt den treffer"winkel" von -1 bis 1 zurück
 bool Hero::CheckHit(float x, float y, float &angle)
 {
-	float length = held.length();
+	float length = float(held.length());
 
 	if (y >= this->y)
 	{
@@ -34,10 +34,10 @@ void Hero::OnDestroy()
 
 void Hero::Update()
 {
-	float length = held.length();
+	float length = static_cast<float>(held.length());
 
 	//calculate x coordinate of hero
-	x = engine->input.MousePos(engine->screen).x - length / 2.0;
+	x = engine->input.MousePos(engine->screen).x - length / 2.0f;
 
 	//bounds checking for x coordinate
 	if (x < 0)

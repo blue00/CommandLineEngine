@@ -9,13 +9,13 @@ void Ball::Start()
 {
 	look = "@";
 
-	posX = 5;
-	posY = 5;
+	posX = 5.0f;
+	posY = 5.0f;
 
-	velX = 0.1;
-	velY = 0.4;
+	velX = 0.1f;
+	velY = 0.4f;
 
-	speed = 0.1;
+	speed = 0.1f;
 }
 
 void Ball::DrawTrail()
@@ -52,8 +52,8 @@ void Ball::DrawTrail()
 	{
 		trail newTrail;
 		newTrail.timeLeft = trailTime / speed;
-		newTrail.x = posX;
-		newTrail.y = posY;
+		newTrail.x = static_cast<int>(posX);
+		newTrail.y = static_cast<int>(posY);
 		trailVec.push_back(newTrail);
 	}
 }

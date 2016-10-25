@@ -39,3 +39,8 @@ void GameObject::OnDestroy()
 {
 	engine->gameObjectManager.Unregister(this);
 }
+
+void GameObject::Destroy()
+{
+	//@TODO: inform the gameData that this object should be destroyed
+}
