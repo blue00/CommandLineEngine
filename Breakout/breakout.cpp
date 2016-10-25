@@ -1,11 +1,14 @@
 #include "breakout.h"
+#include "snowflake.h"
 #include "iostream"
 #include <tchar.h>
 
 Breakout::Breakout()
 {
 	screen.SetTitle(_T("Engine Test"));
-	gameData.Create(&hero);
+	gameData.Spawn(&hero);
 	ball.hero = &hero;
-	gameData.Create(&ball);
+	gameData.Spawn(&ball);
+
+	gameData.Spawn(&snowflakeManager);
 }

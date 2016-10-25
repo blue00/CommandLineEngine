@@ -6,7 +6,7 @@
 #include <iostream>
 
 //abstract game class
-Engine::Engine()
+Engine::Engine():gameObjectManager(1 << 16)
 {
 	gameData.engine = this;
 
@@ -34,7 +34,7 @@ void Engine::Run()
 		{
 			if (endT < fixedTimeRate) //war der tick zu schnell? falls ja warten
 			{
-				Sleep(fixedTimeRate - endT);
+				Sleep(int(fixedTimeRate - endT));
 				deltaTime = fixedTimeRate;
 				//system("Color 2B");
 			}
