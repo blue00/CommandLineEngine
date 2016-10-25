@@ -6,9 +6,9 @@
 Breakout::Breakout()
 {
 	screen.SetTitle(_T("Engine Test"));
-	gameData.Create(&hero);
+	gameData.Spawn(&hero);
 	ball.hero = &hero;
-	gameData.Create(&ball);
+	gameData.Spawn(&ball);
 
-	gameData.Create(&snowflakeManager);
+	gameData.Spawn(&snowflakeManager);
 }

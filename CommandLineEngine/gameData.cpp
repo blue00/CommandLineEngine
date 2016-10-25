@@ -8,7 +8,7 @@ GameData::GameData()
 
 }
 
-void GameData::Create(GameObject *gameObject)
+void GameData::Spawn(GameObject *gameObject)
 {
 	gameObject->Initialize(engine);
 	AddAlive(gameObject);

@@ -13,6 +13,7 @@ public:
 	void Set(int x, int y, char zeichen);
 	char Get(int x, int y);
 	void SetString(int x, int y, std::string str);
+	void SetString(float x, float y, std::string str);
 	void Draw();
 	void Clear(char zeichen = ' ');
 	void SetTitle(std::wstring text);

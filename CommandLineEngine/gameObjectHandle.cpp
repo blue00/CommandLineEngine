@@ -22,10 +22,13 @@ T* GameObjectHandle<T>::GetObj()
 	}
 	else
 	{
+		// no further lookups
+		token.slotId = -1;
 		return NULL;
 	}
 }
 
+// very important: can only do that with objects that have already been spawned
 template<class T>
 void GameObjectHandle<T>::SetObj(T* obj)
 {

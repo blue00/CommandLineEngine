@@ -20,6 +20,14 @@ void Screen::SetString(int x, int y, std::string str)
 	}
 }
 
+void Screen::SetString(float x, float y, std::string str)
+{
+	int x_int = static_cast<int>(x);
+	int y_int = static_cast<int>(y);
+
+	Screen::SetString(x_int, y_int, str);
+}
+
 void Screen::SetTitle(std::wstring text)
 {
 	SetConsoleTitle(text.c_str());
