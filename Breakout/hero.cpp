@@ -11,7 +11,7 @@ void Hero::Start()
 //true falls der held getroffen wird. angle gibt den treffer"winkel" von -1 bis 1 zurück
 bool Hero::CheckHit(float x, float y, float &angle)
 {
-	float length = held.length();
+	float length = float(held.length());
 
 	if (y >= this->y)
 	{
@@ -51,4 +51,9 @@ void Hero::Update()
 
 	//draw held
 	engine->screen.SetString(x, y, held);
+}
+
+const std::wstring Hero::ToString()
+{
+	return std::wstring(L"Hero");
 }
