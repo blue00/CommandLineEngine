@@ -11,7 +11,7 @@ T* GameObjectHandle<T>::GetObj()
 	// check if invalid
 	if (token.slotId == -1)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	GameObject* gameObject = gameObjectManager->Get(token);
@@ -24,7 +24,7 @@ T* GameObjectHandle<T>::GetObj()
 	{
 		// no further lookups
 		token.slotId = -1;
-		return NULL;
+		return nullptr;
 	}
 }
 
