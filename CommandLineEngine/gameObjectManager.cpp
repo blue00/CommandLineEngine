@@ -7,7 +7,7 @@
 GameObjectManager::GameObjectManager(int numEntitySlots)
 {
 	numSlots = numEntitySlots;
-	entitySlots = new GameObject*[numSlots](); // () puts NULL in every slot
+	entitySlots = new GameObject*[numSlots](); // () puts nullptr in every slot
 }
 
 GameObjectManager::~GameObjectManager()
@@ -74,7 +74,7 @@ void GameObjectManager::Register(GameObject* obj)
 	}
 }
 
-// Unregister a GameObject. Its tokens will return NULL from now on.
+// Unregister a GameObject. Its tokens will return nullptr from now on.
 void GameObjectManager::Unregister(GameObject* obj)
 {
 	OutputDebugStringW(L"Unregistering ");
@@ -91,7 +91,7 @@ void GameObjectManager::Unregister(GameObject* obj)
 	}
 	else
 	{
-		entitySlots[token.slotId] = NULL;
+		entitySlots[token.slotId] = nullptr;
 
 		// if we didn't have space before, now we do
 		if (nextFreeSlot == SLOTS_ALL_FULL)
@@ -101,14 +101,14 @@ void GameObjectManager::Unregister(GameObject* obj)
 	}
 }
 
-// Get a GameObject based on the given token. (or NULL if it doesn't exist)
+// Get a GameObject based on the given token. (or nullptr if it doesn't exist)
 GameObject* GameObjectManager::Get(GameObjectToken token)
 {
 	// check range (is "out of range" an error?)
 	if (token.slotId < 0 || token.slotId >= numSlots)
 	{
 		// i wanna throw an exception but i don't know how to do that properly in c++. i'm dumb
-		return NULL;
+		return nullptr;
 	}
 
 	GameObject* currentObj = entitySlots[token.slotId];
@@ -119,6 +119,6 @@ GameObject* GameObjectManager::Get(GameObjectToken token)
 	}
 	else
 	{
-		return NULL;
+		return nullptr;
 	}
 }

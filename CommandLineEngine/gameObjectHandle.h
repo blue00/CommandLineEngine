@@ -13,5 +13,5 @@ struct GameObjectHandle
 
 private:
 	GameObjectToken token;
-	GameObjectManager* gameObjectManager = NULL;
+	GameObjectManager* gameObjectManager = nullptr;
 };
