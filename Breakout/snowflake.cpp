@@ -1,8 +1,6 @@
 #include "snowflake.h"
 #include "..\CommandLineEngine\engine.h"
 
-//struct Screen::Point; //forward declaration to use Screen:Point
-
 void Snowflake::Init(int x, int y, int ttl)
 {
 	posX = x;

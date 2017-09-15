@@ -75,6 +75,20 @@ void Ball::Update()
 	*/
 	engine->screen.SetString(0, 2, std::to_string(engine->deltaTime));
 	engine->screen.SetString(0, 4, debugHeldHit);
+
+
+	//speed test
+
+	//std::string randomString = "" + (char)rand();
+
+	//for (int i = 0; i < engine->screen.screenY - 6; i++)
+	//{
+	//	for (int j = 0; j < engine->screen.screenX; j++)
+	//	{
+	//		engine->screen.SetString(j, i, randomString);
+	//	}
+	//}
+
 	//velY = velY * 1.005; test for hit checking errors
 
 	float posXNew = posX + velX * speed * engine->deltaTime;

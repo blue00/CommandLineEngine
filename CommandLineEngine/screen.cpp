@@ -80,37 +80,51 @@ void Screen::ForceDraw()
 	{
 		for (int x = 0; x < screenX; x++)
 		{
-			if (drawMap[y][x] != map[y][x]) //hat sich etwas verändert?
+			if (drawMap[y][x] != map[y][x])
 			{
-				//änderung übernehmen
 				drawMap[y][x] = map[y][x];
 			}
 
-			//IMMER zeichnen
+			//draw even nothing has changed
 			cursorMove(x, y);
 			std::cout << drawMap[y][x];
 		}
 	}
 }
 
+void Screen::DrawAtIfChanged(int x, int y)
+{
+	if (drawMap[y][x] != map[y][x])
+	{
+		drawMap[y][x] = map[y][x];
+		cursorMove(x, y);
+		std::cout << drawMap[y][x];
+	}
+}
+
 void Screen::Draw()
 {
-	for (int y = 0; y < screenY; y++)
+	//at first we draw every even line, then every odd line
+	//this is more pleasant for the eye
+
+	for (int y = 0; y < screenY; y += 2)
 	{
 		for (int x = 0; x < screenX; x++)
 		{
-			if (drawMap[y][x] != map[y][x]) //hat sich etwas verändert?
-			{
-				//änderung übernehmen und konsolenfenster aktualisieren
-				drawMap[y][x] = map[y][x];
-				cursorMove(x, y);
-				std::cout << drawMap[y][x];
-			}
+			DrawAtIfChanged(x, y);
+		}
+	}
+
+	for (int y = 1; y < screenY; y += 2)
+	{
+		for (int x = 0; x < screenX; x++)
+		{
+			DrawAtIfChanged(x, y);
 		}
 	}
 }
 
-/* Setzt die Fenstergröße (Und den Buffer auf die selbe Größe wie das Fenster) */
+/* Set the window Size and buffer */
 void Screen::SetWindow(int width, int height)
 {
 	//prevent line break problem at the corners
@@ -132,7 +146,7 @@ void Screen::SetWindow(int width, int height)
 	SetConsoleWindowInfo(Handle, TRUE, &Rect);            // Set Window Size 
 }
 
-/* Bewegt den Cursor in der Konsole zum angegebenen Punkt */
+/* Moves the console cursor to the given coordinates */
 void Screen::cursorMove(int x, int y)
 {
 	COORD point;
@@ -141,7 +155,7 @@ void Screen::cursorMove(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), point);
 }
 
-/* Bewegt den Cursor in der Konsole zum angegebenen Punkt */
+/* Moves the console cursor to the given coordinates */
 void Screen::cursorMove(COORD point)
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), point);
