@@ -13,7 +13,7 @@ void Screen::SetString(int x, int y, std::string str)
 {
 	cursorMove(x, y);
 
-	for (int i = 0; i < str.length(); i++)
+	for (size_t i = 0; i < str.length(); i++)
 	{
 		Set(x, y, str[i]);
 		++x;
@@ -85,7 +85,7 @@ void Screen::ForceDraw()
 				drawMap[y][x] = map[y][x];
 			}
 
-			//draw even nothing has changed
+			// draw even nothing has changed
 			cursorMove(x, y);
 			std::cout << drawMap[y][x];
 		}
@@ -104,8 +104,8 @@ void Screen::DrawAtIfChanged(int x, int y)
 
 void Screen::Draw()
 {
-	//at first we draw every even line, then every odd line
-	//this is more pleasant for the eye
+	// at first we draw every even line, then every odd line
+	// this is more pleasant for the eye
 
 	for (int y = 0; y < screenY; y += 2)
 	{
@@ -127,7 +127,7 @@ void Screen::Draw()
 /* Set the window Size and buffer */
 void Screen::SetWindow(int width, int height)
 {
-	//prevent line break problem at the corners
+	// prevent line break problem at the corners
 	++width;
 	++height;
 
@@ -141,9 +141,9 @@ void Screen::SetWindow(int width, int height)
 	Rect.Bottom = height - 1;
 	Rect.Right = width - 1;
 
-	HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);      // Get Handle 
-	SetConsoleScreenBufferSize(Handle, coord);            // Set Buffer Size 
-	SetConsoleWindowInfo(Handle, TRUE, &Rect);            // Set Window Size 
+	HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);      //  Get Handle 
+	SetConsoleScreenBufferSize(Handle, coord);            //  Set Buffer Size 
+	SetConsoleWindowInfo(Handle, TRUE, &Rect);            //  Set Window Size 
 }
 
 /* Moves the console cursor to the given coordinates */

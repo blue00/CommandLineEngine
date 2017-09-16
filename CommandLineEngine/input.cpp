@@ -1,12 +1,12 @@
 #include "input.h"
 
-//#include "conio.h"
+// #include "conio.h"
 #include <Windows.h>
 
 Input::Input()
 {
-	//@CHANGE: diese daten könnten aus einem textfile geladen werden -> tastenkonfiguration veränderbar, z.b. über ein optionsmenü
-	//https://msdn.microsoft.com/en-us/library/dd375731%28VS.85%29.aspx
+	// @CHANGE: these keycodes could be loaded from a text file -> keyboard configuration (menu) would be possible
+	// https:// msdn.microsoft.com/en-us/library/dd375731%28VS.85%29.aspx
 	KeyCode[FUNC_W] = 0x57;
 	KeyCode[FUNC_S] = 0x53;
 	KeyCode[FUNC_A] = 0x41;
@@ -16,7 +16,7 @@ Input::Input()
 	ResetKeys();
 }
 
-bool Input::IsKeyPressed(int func) //true wenn taste heruntergedrückt wurde (es geht nicht um das unten halten)
+bool Input::IsKeyPressed(int func) // true if key is pressed (and not pressed the tick before)
 {
 	if (KeyArray[func] == KEY_PRESSED)
 	{
@@ -26,12 +26,12 @@ bool Input::IsKeyPressed(int func) //true wenn taste heruntergedrückt wurde (es 
 	return false;
 }
 
-bool Input::IsKeyDown(int func) //true wenn gepresst
+bool Input::IsKeyDown(int func) // true if key is held down for more than one tick
 {
 	return KeyArray[func] > KEY_RELEASED;
 }
 
-bool Input::IsKeyReleased(int func) //true wenn released
+bool Input::IsKeyReleased(int func) // true if released in this tick
 {
 	return KeyArray[func] == KEY_RELEASED;
 }
@@ -47,27 +47,24 @@ void Input::Tick()
 
 		KeyUpdated[i] = false;
 	}
+ 
+	/* old method which reads the keys from the command line. we keep it here for just reference. */
+	// while (_kbhit()) // while there is new input (= keys pressed)
+	// {
+	// 	int key = _getch();
+	// 	KeyDown(key);
+	// }
 
-	//es gibt kein event wenn eine taste gedrückt oder losgelassen wird
-	//deshalb muss hier jede taste auf druck geprüft werden
-		 
-	/* alte methode die die tasten aus der konsole liest */
-	//while (_kbhit()) //solange es tasten zum lesen gibt
-	//{
-	//	int key = _getch();
-	//	KeyDown(key); //taste setzt automatisch KeyUpdated auf true
-	//}
-
-	//für jede taste prüfen ob diese gedrückt wird
+	// there is no key event we could use for keydown or up. therefore we must check the status of every key manually.
 	for (int i = 0; i < USEDFUNCKEYS; ++i)
 	{
-		if (GetAsyncKeyState(KeyCode[i]))
+		if (GetAsyncKeyState(KeyCode[i])) //is this key pressed atm?
 		{
 			KeyDown(i);
 		}
 	}
 
-	//alle tasten die nicht geupdated wurden aber einen gedrückten status haben sind losgelassen worden
+	//if a key was pressed in the last tick but not updated in the current tick we know it is released now
 	for (int i = 0; i < USEDFUNCKEYS; ++i)
 	{
 		if (!KeyUpdated[i] && KeyArray[i] > KEY_RELEASED)
@@ -79,7 +76,7 @@ void Input::Tick()
 
 void Input::ResetKeys()
 {
-	//reset keyboard
+	// reset keyboard
 	for (int i = 0; i < USEDFUNCKEYS; ++i)
 	{
 		KeyArray[i] = KEY_NULL;
@@ -94,8 +91,8 @@ Mathf::PointF Input::MousePos(Screen screen)
 
 	Mathf::PointF point;
 
-	//werte durch rummprobieren herausgefunden
-	point.x = p.x / (screen.screenX / 12.0);
+	// the 12.0 and 3.35 are found through trial and error @DEBUG: is there a consistent method which works with all console settings? (font, fontsize, ...)
+	point.x = p.x / (screen.screenX / 12.0f);
 	point.y = p.y / (screen.screenY / 3.35f);
 
 	return point;

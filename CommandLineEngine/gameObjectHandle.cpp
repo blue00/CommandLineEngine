@@ -28,7 +28,7 @@ T* GameObjectHandle<T>::GetObj()
 	}
 }
 
-// very important: can only do that with objects that have already been spawned
+// very important: we can only do that with objects that have already been spawned
 template<class T>
 void GameObjectHandle<T>::SetObj(T* obj)
 {

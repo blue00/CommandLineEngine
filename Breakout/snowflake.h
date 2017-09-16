@@ -9,7 +9,7 @@ public:
 	void Init(int x, int y, int ttl);
 
 	virtual void Update();
-	//virtual void Start();
+	// virtual void Start();
 	virtual const std::wstring ToString();
 private:
 	int posX;

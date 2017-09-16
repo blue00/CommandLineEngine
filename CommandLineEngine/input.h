@@ -16,14 +16,14 @@ public:
 
 	Input();
 	void Tick();
-	bool IsKeyPressed(int func); //true wenn taste heruntergedrückt wurde (es geht nicht um das unten halten)
-	bool IsKeyDown(int func); //true wenn gepresst
-	bool IsKeyReleased(int func); //true wenn released
+	bool IsKeyPressed(int func);
+	bool IsKeyDown(int func);
+	bool IsKeyReleased(int func);
 	void ResetKeys();
 	Mathf::PointF MousePos(Screen screen);
 
 private:
-	/* KEY STATES - DO NOT CHANGE THIS IF YOU ADD A NEW KEY !!! */
+	/* KEY STATES - DO NOT CHANGE THEM IF YOU ADD A NEW KEY! */
 	const int KEY_NULL = 0;
 	const int KEY_RELEASED = 1;
 	const int KEY_PRESSED = 2;

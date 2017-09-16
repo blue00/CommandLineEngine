@@ -1,7 +1,7 @@
 #include "gameData.h"
 #include <algorithm>
 
-//@TODO: maybe a vector is the wrong list for this, maybe linked list?
+// @TODO: maybe a vector is the wrong list for this, maybe linked list?
 
 GameData::GameData()
 {
@@ -32,25 +32,25 @@ void GameData::RemoveUpdate(GameObject *gameObject)
 
 void GameData::Tick()
 {
-	//check for dead objects
+	// check for dead objects
 	for (std::vector<GameObject*>::iterator it = aliveVec.begin(); it != aliveVec.end();)
 	{
 		GameObject* currentBhv = (*it);
 
-		if (!currentBhv->alive) //not alive?
+		if (!currentBhv->alive) // not alive?
 		{
-			//call OnDestroy
+			// call OnDestroy
 			currentBhv->OnDestroy();
 
-			//do not destroy the object here! we cannot know if it was originally created with new
-			//delete(currentBhv);
+			// do not destroy the object here! we cannot know if it was originally created with new
+			// delete(currentBhv);
 
-			//remove from all other lists
+			// remove from all other lists
 			updateVec.erase(std::remove(updateVec.begin(), updateVec.end(), currentBhv), updateVec.end());
-			//todo: remove from other lists
-			//...
+			// todo: remove from other lists
+			// ...
 
-			//remove object from alive vector (erase returns the next object)
+			// remove object from alive vector (erase returns the next object)
 			it = aliveVec.erase(it);
 
 		}
@@ -60,13 +60,13 @@ void GameData::Tick()
 		}
 	}
 
-	//update loop
+	// update loop
 	for (unsigned i = updateVec.size(); i-- > 0;)
 	{
 		updateVec[i]->Update();
 	}
 
-	//todo: add other loops
-	//...
+	// todo: add other loops
+	// ...
 }
 

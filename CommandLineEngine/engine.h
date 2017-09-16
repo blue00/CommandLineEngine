@@ -10,7 +10,7 @@ class Engine
 {
 public:
 	Engine();
-	void Run(); //startet das spiel
+	void Run(); // start the game
 	float fixedTimeRate;
 	bool isFixedTimeOn;
 	Input input;
@@ -18,5 +18,5 @@ public:
 	Audio audio;
 	GameData gameData;
 	GameObjectManager gameObjectManager;
-	float deltaTime; //die zeit die wärend des letzten ticks vergangen ist
+	float deltaTime; // The time it took to complete the last frame @DEBUG: add unit
 };

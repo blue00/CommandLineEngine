@@ -1,5 +1,5 @@
 #include "mathf.h"
-#include <limits> // for infinity
+#include <limits>
 
 namespace Mathf
 {
@@ -57,7 +57,7 @@ namespace Mathf
 		if (dx == 0)
 		{
 			x_inc = 0;
-			error = std::numeric_limits<double>::infinity();
+			error = std::numeric_limits<float>::infinity();
 		}
 		else if (x1 > x0)
 		{

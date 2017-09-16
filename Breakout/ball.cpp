@@ -3,7 +3,7 @@
 #include "hero.h"
 #include "..\CommandLineEngine\mathf.h"
 
-//struct Screen::Point; //forward declaration to use Screen:Point
+// struct Screen::Point; // forward declaration to use Screen:Point
 
 void Ball::Start()
 {
@@ -23,10 +23,10 @@ void Ball::DrawTrail()
 	float trailTime = 10;
 	bool foundIt = false;
 
-	//check if the current position is already part of the trail-vector, update timeLeft of all trails and remove all trails with timeLeft < 0
+	// check if the current position is already part of the trail-vector, update timeLeft of all trails and remove all trails with timeLeft < 0
 	for (std::vector<trail>::iterator it = trailVec.begin(); it != trailVec.end();)
 	{
-		if (it->x == posX && it->y == posY) //new point already listed? if yes reset timeLeft
+		if (it->x == posX && it->y == posY) // new point already listed? if yes reset timeLeft
 		{
 			it->timeLeft = trailTime / speed;
 			foundIt = true;
@@ -38,17 +38,17 @@ void Ball::DrawTrail()
 
 		if (it->timeLeft < 0)
 		{
-			//erase returns the next object
+			// erase returns the next object
 			it = trailVec.erase(it);
 		}
-		else //we have to draw this trailpart and move to the next
+		else // we have to draw this trailpart and move to the next
 		{
 			engine->screen.SetString(it->x, it->y, look);
 			++it;
 		}
 	}
 
-	if (!foundIt) //new point? if yes add
+	if (!foundIt) // new point? if yes add
 	{
 		trail newTrail;
 		newTrail.timeLeft = trailTime / speed;
@@ -77,9 +77,9 @@ void Ball::Update()
 	engine->screen.SetString(0, 4, debugHeldHit);
 
 
-	//speed test
+	// speed test
 
-	//std::string randomString = "" + (char)rand();
+	// std::string randomString = "" + (char)rand();
 
 	//for (int i = 0; i < engine->screen.screenY - 6; i++)
 	//{
@@ -89,33 +89,33 @@ void Ball::Update()
 	//	}
 	//}
 
-	//velY = velY * 1.005; test for hit checking errors
+	//velY = velY * 1.005; // test for hit checking errors
 
 	float posXNew = posX + velX * speed * engine->deltaTime;
 	float posYNew = posY + velY * speed * engine->deltaTime;
 	std::vector<Mathf::Point> visitedPoints = Mathf::Raytrace(posX, posY, posXNew, posYNew);
-	//@TODO: use it now!
+	// @TODO: use it now!
 
 	float hitAngle;
 	 
-	//da wir hier zuerst gucken ob wir den helden getroffen haben, und dieser y-werte unter sich zulässt, kann der ball so das spielfeld bzw. das fenster verlassen
-	if (hero->CheckHit(posXNew, posYNew, hitAngle)) //did we hit the held?
+	// @DEBUG da wir hier zuerst gucken ob wir den helden getroffen haben, und dieser y-werte unter sich zulässt, kann der ball so das spielfeld bzw. das fenster verlassen
+	if (hero->CheckHit(posXNew, posYNew, hitAngle)) // did we hit the held?
 	{
 		debugHeldHit = std::to_string(hitAngle);
 		velY = -velY;
-		velX = hitAngle; //@TODO: hier sollte die velocity rotiert werden, und nicht nur velX gesetzt werden. außerdem muss beachtet werden,
-						//dass die Y-richtung immer schneller ist als die X-richtung, da mehr abstand zwischen unternanderliegenden zeichen ist.
-						//dies könnte behoben werden indem es für y einen zusätzlichen wert gibt der immer auf das endergebnis addiert (oder malgenommen) wird
+		velX = hitAngle; // @TODO: hier sollte die velocity rotiert werden, und nicht nur velX gesetzt werden. außerdem muss beachtet werden,
+						// dass die Y-richtung immer schneller ist als die X-richtung, da mehr abstand zwischen unternanderliegenden zeichen ist.
+						// dies könnte behoben werden indem es für y einen zusätzlichen wert gibt der immer auf das endergebnis addiert (oder malgenommen) wird
 	}
 	else if ((engine->screen.screenY - posYNew) < 0)
 	{
 		engine->screen.SetString(0, 1, "GAME OVER");
 	}
-	else if (!engine->screen.CheckBounds(posXNew, posYNew)) //we hit a wall
+	else if (!engine->screen.CheckBounds(posXNew, posYNew)) // we hit a wall
 	{
 		engine->screen.SetString(0, 1, "HIT");
 
-		//change velocity
+		// change velocity
 		if (posYNew < 0)
 		{
 			velY = -velY;
@@ -125,10 +125,10 @@ void Ball::Update()
 			velX = -velX;
 		}
 
-		//recalculate new positions an check the bounds again. if we have a hit we are in an endless velocity change loop that we must solve
+		// recalculate new positions an check the bounds again. if we have a hit we are in an endless velocity change loop that we must solve
 		if (!engine->screen.CheckBounds(posX + velX * speed, posY + velY * speed))
 		{
-			//solve endless velocity change
+			// solve endless velocity change
 			if (posYNew < 0)
 			{
 				velX = -velX;
@@ -141,10 +141,10 @@ void Ball::Update()
 	}
 	else
 	{
-		//move to new position
+		// move to new position
 		posX = posXNew;
 		posY = posYNew;
-		//engine->screen.SetString(posX, posY, look);
+		// engine->screen.SetString(posX, posY, look);
 	}
 
 	DrawTrail();

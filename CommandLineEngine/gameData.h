@@ -4,7 +4,7 @@
 #include <vector>
 #include <iostream>
 
-class Engine; //forward declaration
+class Engine;
 
 class GameData
 {
@@ -16,6 +16,6 @@ public:
 	void AddUpdate(GameObject *gameObject);
 	void RemoveUpdate(GameObject *gameObject);
 	void Spawn(GameObject *gameObject);
-	std::vector<GameObject*> updateVec; //vector of pointers to gameObjects
+	std::vector<GameObject*> updateVec; // vector of pointers to gameObjects
 	std::vector<GameObject*> aliveVec;
 };

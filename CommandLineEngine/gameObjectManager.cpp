@@ -7,7 +7,7 @@
 GameObjectManager::GameObjectManager(int numEntitySlots)
 {
 	numSlots = numEntitySlots;
-	entitySlots = new GameObject*[numSlots](); // () puts nullptr in every slot
+	entitySlots = new GameObject*[numSlots](); // puts nullptr in every slot
 }
 
 GameObjectManager::~GameObjectManager()
@@ -37,7 +37,7 @@ int GameObjectManager::getFreeSlot()
 		}
 	}
 
-	// no more space :(
+	// no more space
 	return SLOTS_ALL_FULL;
 }
 
@@ -51,9 +51,8 @@ void GameObjectManager::Register(GameObject* obj)
 	if (!HasFreeSlots())
 	{
 		OutputDebugStringW(L"failed\n");
-		// BAD BAD BAD
 		MessageBox(NULL, L"No more entity slots, this will be fatal!", NULL, NULL);
-		// i wanna throw an exception but i don't know how to do that properly in c++. i'm dumb
+		// i wanna throw an exception but i don't know how to do that properly in c++. i'm dumb @DEBUG: do it properly
 	}
 	else
 	{
@@ -107,7 +106,7 @@ GameObject* GameObjectManager::Get(GameObjectToken token)
 	// check range (is "out of range" an error?)
 	if (token.slotId < 0 || token.slotId >= numSlots)
 	{
-		// i wanna throw an exception but i don't know how to do that properly in c++. i'm dumb
+		// i wanna throw an exception but i don't know how to do that properly in c++. i'm dumb @DEBUG: do it properly
 		return nullptr;
 	}
 

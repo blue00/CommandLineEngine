@@ -13,7 +13,6 @@ void SnowflakeManager::Update()
 	Snowflake* snowflake = handle.GetObj();
 		
 	// of course you don't really need to check HasFreeSlots() each time you want to spawn a new object
-	// but you can do that :)
 	if (!snowflake && engine->gameObjectManager.HasFreeSlots())
 	{
 		snowflake = new Snowflake();

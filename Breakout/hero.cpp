@@ -1,5 +1,5 @@
 #include "hero.h"
-#include "..\CommandLineEngine\engine.h"  //"engine.h"
+#include "..\CommandLineEngine\engine.h" // "engine.h"
 
 void Hero::Start()
 {
@@ -8,7 +8,7 @@ void Hero::Start()
 	held = "####################";
 }
 
-//true falls der held getroffen wird. angle gibt den treffer"winkel" von -1 bis 1 zurück
+// true falls der held getroffen wird. angle gibt den treffer"winkel" von -1 bis 1 zurück
 bool Hero::CheckHit(float x, float y, float &angle)
 {
 	float length = float(held.length());
@@ -36,10 +36,10 @@ void Hero::Update()
 {
 	float length = static_cast<float>(held.length());
 
-	//calculate x coordinate of hero
+	// calculate x coordinate of hero
 	x = engine->input.MousePos(engine->screen).x - length / 2.0f;
 
-	//bounds checking for x coordinate
+	// bounds checking for x coordinate
 	if (x < 0)
 	{
 		x = 0;
@@ -49,7 +49,7 @@ void Hero::Update()
 		x = engine->screen.screenX - length;
 	}
 
-	//draw held
+	// draw held
 	engine->screen.SetString(x, y, held);
 }
 
